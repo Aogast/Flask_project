@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Распознавание голоса и чтение текста</title>
+  <html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+  <p>Если что-то непонятно, используйте голосовой ввод.</p>
+      <p><a href='%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F.html' id='инструкци'>Инструкция</a></p>
+  <input type="button" name='начало' value='Начать прослушивание' onclick="start()">
+  <input type="button" name='конец' value='Закончить' onclick="stop()">
+  <h1>Сайт по продаже печенья</h1>
+    <div id='описание'>
+    <p>Наш сайт - один из крупнейших онлайн-продавцов печенья в России. Здесь вы можете найти огромный выбор российской и 
+        зарубежной продукции на любой выбор и вкус. Надеемся, вы смоежете  найти то, что вас заинтересует.</p>
+    <h3>О поставщиках</h3>
+    <p>Наша компания имеет поставщиков по всему миру. Мы предлагаем вам на выбор многие традиционные изделия со всего света. 
+        Например: Батончики нанаймо, печенье амишей, свадебное мексиканское печенье</p>
+    <h3>Наши самые популярные продукты</h3>
+    </div>
+    <div class="table" id='товар'>
+        <ul>
+            <li>Овсяное печенье</li>
+            <li>Ржаное печенье</li>
+            <li>Абрикосовое печенье</li>
+            <li>Миндальные хлебцы</li>
+            <li>Кокосовое печенье</li>
+            <li>Трюфели</li>
+            <li>Халва</li>
+        </ul>
+    </div>
+    <h3>Список основных стран поставщиков</h3>
+    <div class='table' id='поставщик'>
+        <ul>
+            <li>США</li>
+            <li>Мексика</li>
+            <li>Польша</li>
+            <li>Канада</li>
+            <li>Египет</li>
+            <li>ЮАР</li>
+            <li>Мали</li>
+            <li>Германия</li>
+            <li>Италия</li>
+            <li>Франция</li>
+            <li>Япония</li>
+        </ul>
+    </div>
+    <div class='img'>
+        <img src="%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B8/%D1%80%D0%BE%D0%B3%D0%B0%D0%BB%D0%B8%D0%BA.jpg" alt="здесь должна быть картинка, но ее почему-то нет"/>
+        <img src="%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B8/%D1%81%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B3%D0%B0.jpg" alt="здесь должна быть картинка, но ее почему-то нет"/>
+        <img src="%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B8/%D1%87%D0%B5%D1%80%D0%BD%D0%BE-%D0%B1%D0%B5%D0%BB%D0%BE%D0%B5.jpg" alt="здесь должна быть картинка, но ее почему-то нет"/>
+    </div>
+    <h3>Окно заказа</h3>
+    <div id='заказ'>
+    <form name="test" method="post" action="input1.php">
+  <p><b>Ваше имя:</b><br>
+   <input type="text" size="40">
+  </p>
+  <p><b>Ваша фамилия:</b><br>
+   <input type="text" size="40">
+  </p>
+  <p><b>Адрес доставки:</b><br>
+   <input type="text" size="80">
+  </p>
+  <p><b>Время доставки</b><Br>
+   <input type="radio" name="browser" value="ie"> С 6 до 10 утра<Br>
+   <input type="radio" name="browser" value="opera"> С 10 утра до 2 дня<Br>
+   <input type="radio" name="browser" value="firefox"> С 2 до 6 <Br>
+    <input type="radio" name="browser" value="firefox"> С 6 до 10 <Br>
+    </p>
+  <p><b>Название печенек</b><br>
+   <input type="text" size="80">
+  </p>
+  <p><b>Колличество печенек</b><br>
+   <input type="text" size="80">
+  </p>
+  <p>Комментарий<Br>
+   <textarea name="comment" cols="40" rows="3"></textarea></p>
+  <p><input type="submit" value="Отправить">
+   <input type="reset" value="Очистить"></p>
+ </form>
+  </div>
+<div class="contacts" id='контакт'>
+ <h2>Контакты</h2>
+    <ul>
+        <li>Почта - klmnopqr@gmail.com</li>
+        <li>Телефон - 88005553535 </li>
+      </ul>
+</div>
+  <script>
+  // Создаем распознаватель
+  var recogn = new webkitSpeechRecognition();
+  var tsaurus0 = ['перейт', 'выдели', 'спустить']; // создаем первый тезаурус с командами
+  var tsaurus1 = ['поставщик', 'заказ', 'товар', 'контакт', 'описани', 'инструкци' ]; // создаем второй тезаурус с обрабатываемыми элементами
+  var namin1 = '';
+  var namin2 = '';
+
+  recogn.lang = 'ru-Ru';
+  recogn.interimResults = true; // инициализация
+
+  recogn.onresult = function (event) {
+    var result = event.results[event.resultIndex];
+    if (result.isFinal) {
+      var tsaurus2 = result[0].transcript.split(' '); // Разбиение текста на части
+      for (let i = 0; i < tsaurus1.length; i++) {
+          for (let j = 0; j < tsaurus2.length; j++) {
+              if (tsaurus2[j].indexOf(tsaurus1[i]) > -1){
+                  namin1 = tsaurus1[i]; // получение имени элемента
+              }
+          }
+      }
+      for (let i = 0; i < tsaurus0.length; i++) {
+          for (let j = 0; j < tsaurus2.length; j++) {
+              if (tsaurus2[j].indexOf(tsaurus0[i]) > -1){
+                  namin2 = tsaurus0[i]; // получение названия команды
+              }
+          }
+      }
+        if (namin1 == '' || namin2 == ''){
+            alert('произошла ошибка, попробуйте еще раз'); // обработка ошибок
+        } else {
+            if (namin2 == 'спустить'){
+                window.location.href = 'http://127.0.0.1:65321/main.html' + '#' + namin1; // переход по ссылке, здесь и нужно поменять первоначальный адрес, чтобы протестировать эту функцию
+            } else if (namin2 == 'выдели'){
+                var element = document.getElementById(namin1);
+                element.style.backgroundColor = 'red'; // изменение цвета
+            }  else if (namin2 == 'перейт'){
+                var elem = document.getElementById(namin1).href;
+                window.location.href = elem; // переход по ссылке
+            namin1 = ''
+            namin2 = '' // очистка
+        }
+        }
+      } else {
+        console.log('Промежуточный результат: ', result[0].transcript);
+    }
+};
+// команда запуска
+  function start () {
+    recogn.start();
+  }
+// команда остановки
+  function stop () {
+    synth.pause();
+  }
+  </script>
+  <style>
+  .img {
+    float: left;
+    margin-left: 160px;
+  }
+  .table {
+    margin-left: 30px;
+    background: #e8dcc5;
+  }
+  .contacts {
+    margin-left: 10px;
+    margin-top: 20;
+    margin-bottom: 15px;
+    background: #e8dcc5;
+  }
+  </style>
+</body>
+</html>
