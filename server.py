@@ -11,34 +11,32 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 def main():
-    db_session.global_init("db/blogs.sqlite")
-    session = db_session.create_session()
-    if os.access('info.json', os.R_OK):
-        with open('info.json') as f:
-            file = f.read()
-            resp = json.loads(file)
-            print(resp)
-            user = User(name=resp['name'],
-                        address=resp['address'],
-                        email=resp['email'],
-                        cookies=resp['cookies'],
-                        count=resp['count'],
-                        comment=resp['comment'])
-            session.add(user)
-            session.commit()
-            session.add(user)
-            session.commit()
-            session.add(user)
-            session.commit()
-            session.add(user)
-            session.commit()
-        os.remove('info.json')
-    user = session.query(User)
-    print(user)
-
     @app.route('/')
-    @app.route('/register')
+    @app.route('/')
     def index():
+        db_session.global_init("db/blogs.sqlite")
+        session = db_session.create_session()
+        if os.access('info.json', os.R_OK):
+            with open('info.json') as f:
+                file = f.read()
+                resp = json.loads(file)
+                print(resp)
+                user = User(name=resp['name'],
+                            address=resp['address'],
+                            email=resp['email'],
+                            cookies=resp['cookies'],
+                            count=resp['count'],
+                            comment=resp['comment'])
+                session.add(user)
+                session.commit()
+                session.add(user)
+                session.commit()
+                session.add(user)
+                session.commit()
+                session.add(user)
+                session.commit()
+            os.remove('info.json')
+        user = session.query(User)
         return render_template("index.html", user=user)
 
 
