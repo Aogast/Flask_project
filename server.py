@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 def main():
     @app.route('/')
-    @app.route('/')
+    @app.route('/data')
     def index():
         db_session.global_init("db/blogs.sqlite")
         session = db_session.create_session()
