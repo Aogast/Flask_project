@@ -13,7 +13,6 @@ class User(SqlAlchemyBase):
     address = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, unique=True, nullable=True)
-    time = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
 
     cookies = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     count = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)

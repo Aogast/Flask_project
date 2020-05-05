@@ -1,4 +1,8 @@
+import json
+import os
+
 from flask import Flask, render_template
+
 from data import db_session
 from data.users import User
 
@@ -8,28 +12,36 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 def main():
     db_session.global_init("db/blogs.sqlite")
-    db_session.create_session()
-    user = User()
-    user.name = 'Афанасий Петрович'
-    user.address = 'Москва'
-    user.email = 'email@email.ru'
     session = db_session.create_session()
-    session.add(user)
-    user = session.query(User).first()
-    print(user.name)
-    session.commit()
-    app.run()
-    session = db_session.create_session()
-    user = User()
-    user.name = 'Афанасий Петрович'
-    user.address = 'Москва'
-    user.email = 'email@email.ru'
-    session = db_session.create_session()
-    session.add(user)
-    user = session.query(User).first()
-    session.commit()
-    print(user.name)
+    if os.access('info.json', os.R_OK):
+        with open('info.json') as f:
+            file = f.read()
+            resp = json.loads(file)
+            print(resp)
+            user = User(name=resp['name'],
+                        address=resp['address'],
+                        email=resp['email'],
+                        cookies=resp['cookies'],
+                        count=resp['count'],
+                        comment=resp['comment'])
+            session.add(user)
+            session.commit()
+            session.add(user)
+            session.commit()
+            session.add(user)
+            session.commit()
+            session.add(user)
+            session.commit()
+        os.remove('info.json')
+    user = session.query(User)
+    print(user)
+
+    @app.route('/')
+    @app.route('/register')
+    def index():
+        return render_template("index.html", user=user)
 
 
 if __name__ == '__main__':
     main()
+    app.run(port=8080, host='127.0.0.1')
