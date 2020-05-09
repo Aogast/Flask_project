@@ -1,7 +1,5 @@
-import datetime
 import sqlalchemy
-from sqlalchemy import orm
-from .db_session import SqlAlchemyBase, create_session
+from .db_session import SqlAlchemyBase
 
 
 class User(SqlAlchemyBase):
@@ -22,5 +20,3 @@ class User(SqlAlchemyBase):
     amount = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     comment = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     time = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-
-
