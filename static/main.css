@@ -1,0 +1,57 @@
+.butt {margin-right: 100px;
+  display: inline-block;
+  color: black;
+  font-size: 125%;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  padding: .25em .5em;
+  outline: none;
+  border: 1px solid rgb(250,172,17);
+  border-radius: 7px;
+  background: rgb(255,212,3) linear-gradient(rgb(255,212,3), rgb(248,157,23));
+  box-shadow: inset 0 -2px 1px rgba(0,0,0,0), inset 0 1px 2px rgba(0,0,0,0), inset 0 0 0 60px rgba(255,255,0,0);
+  transition: box-shadow .2s, border-color .2s;}
+.butt:hover{box-shadow: inset 0 -1px 1px rgba(0,0,0,0), inset 0 1px 2px rgba(0,0,0,0), inset 0 0 0 60px rgba(255,255,0,.5);}
+.butt:active{padding: calc(.25em + 1px) .5em calc(.25em - 1px);
+  border-color: rgba(177,159,0,1);
+  box-shadow: inset 0 -1px 1px rgba(0,0,0,.1), inset 0 1px 2px rgba(0,0,0,.3), inset 0 0 0 60px rgba(255,255,0,.45);}
+.tabley {margin-left: 30px;
+    background: #e8dcc5;}
+*{background-color: #1f2021;
+    color: rgb(255,212,3);
+    font-style: italic;}
+.topnavy {overflow: hidden;
+  background-color: #1f2021;}
+.topnavy a {float: inherit;
+  color: rgb(255,212,3);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;}
+.topnavy a:hover {background-color: rgb(255,212,3);
+  color: black;}
+.img {float: right;
+    border: 8px solid rgb(255,212,3);}
+.table {margin-left: 150px;
+    border-left: 2px solid #ccc;
+    padding-left: 40px;}
+.topnav {overflow: hidden;
+  background-color: #1f2021;}
+.topnav a{float: inherit;
+  color: rgb(255,212,3);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;}
+.topnav a:hover {background-color: rgb(255,212,3);
+  color: black;}
+.img1 {float: right;
+    margin-right: 650px;}
+.img2{margin-left: 400px;}
+input{color: rgb(255,212,3);
+    border-color: rgb(255,212,3);
+    border-radius: 15px 100px 15px 100px}
+.tablex{margin-left: 20px;
+    border-left: 2px solid #ccc;
+    padding-left: 20px;}

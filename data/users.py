@@ -11,11 +11,16 @@ class User(SqlAlchemyBase):
                            primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     address = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    telefon = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, nullable=True)
-
-    cookies = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    count = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
+    surgeter = sqlalchemy.Column(sqlalchemy.String,
+                              index=True, nullable=True)
+    cv = sqlalchemy.Column(sqlalchemy.Integer,
+                           index=True, nullable=True)
+    kindofcook = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    amount = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     comment = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    time = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
 
