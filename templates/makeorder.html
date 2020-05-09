@@ -1,0 +1,74 @@
+{% extends "baseshabl2.html" %}
+{% block content %}
+    <div id='заказ' class='table'>
+    <form name="test" method="post" action="#">
+    <div class='img'>
+       <img src="static/печенье.jpg" width='410' height="280" alt="здесь должна быть картинка, но ее почему-то нет"/>
+    </div>
+  <p><b><big>Ваше имя:</big></b>
+   <input type="text" size="60" name="name">
+  </p>
+  <p><b><big>Ваша фамилия:</big></b>
+   <input type="text" size="60" name="surname">
+  </p>
+  <p><b><big>Город:</big></b>
+   <input type="text" size="60" name="city">
+  </p>
+  <p><b><big>Адрес доставки:</big></b>
+   <input type="text" size="60" name="adress">
+  </p>
+    <p><b><big>Номер телефона:</big></b>
+   <input type="text" size="60" name="telnum">
+  </p>
+    <p><b><big>Время доставки</big></b><Br>
+   <input type="radio" name="time" value="С 6 до 10 утра"> С 6 до 10 утра<Br>
+   <input type="radio" name="time" value="С 10 утра до 2 дня">С 10 утра до 2 дня<Br>
+   <input type="radio" name="time" value="С 2 до 6 дня"> С 2 до 6 дня<Br>
+    <input type="radio" name="time" value="С 6 до 10 вечера"> С 6 до 10 вечера<Br>
+  </p>
+   <div class="table2">
+   <div class='img'>
+        <img src="static/печенье-3.jpg" width='410' height="270" alt="здесь должна быть картинка, но ее почему-то нет"/>
+    </div>
+  <p><b><big>Название печенек</big></b><br>
+   <select name="kindof">
+    <option>Овсяное печенье</option>
+    <option>Ржаное печенье</option>
+    <option>Абрикосовое печенье</option>
+    <option>Миндальные хлебцы</option>
+    <option>Кокосовое печенье</option>
+    <option>Трюфели</option>
+    <option>Халва</option>
+      </select>
+  </p>
+  <p><b><big>Колличество печенек</big></b>
+   <input type="text" size="60" name="cooknumber">
+  </p>
+  <p><big>Комментарий</big><Br>
+  <textarea name="comment" cols="40" rows="5"></textarea></p>
+  <p><b><big>Номер вашей карточки:</big></b>
+   <input type="text" size="60" name="cardnumber">
+  </p>
+  <p><b><big>Ваш CVV:</big></b>
+   <input type="text" size="60" name="CVV">
+  </p>
+  <p><b><big>Фамилия Имя получателя на карте</big></b>
+   <input type="text" size="60" name="surgeter">
+  </p>
+  <p><b><big>Срок валидности карты</big></b>
+   <input type="text" size="60">
+  </p>
+       <div>
+    <p><input type="submit" value="submit" class='butt'>
+    </div>
+      </div>
+   </form>
+   </div>
+<hr>
+<footer>
+    <p>Совершая заказ, вы соглашаетесь с нашей политикой конфиденциалтьности относительно ваших контактов а также учетных записей и банковских данных.</p>
+    <p>Сайт не является пропагандистским, агитационным, не содержит материалов и создан сугубо в коммерческих целях.</p>
+    <p>Товар возврату не подлежит.</p>
+    <p>Телефон для контактов: +7 926 666 66 66</p>
+</footer>
+{% endblock %}
