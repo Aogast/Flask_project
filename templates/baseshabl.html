@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Окно заказа</title>
+    <link rel="stylesheet" href="static/main.css">
+  <html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div>
+    <h1 class='img1'>Печеньки.net</h1>
+    <img class='img2'src="static/печенье эмблема.jpeg" width="68" height="68" alt="здесь должна быть картинка, но ее почему-то нет"/>
+  </div>
+    <hr>
+    <div class="topnavy">
+        <a href={{url_for('index')}}>Главная</a>
+        <a href={{url_for('tab')}}>Заказы</a>
+        <a href={{url_for('instr')}}>Инструкция</a>
+        <a href={{url_for('order')}}>Сделать заказ</a>
+    </div>
+    <hr>
+    <main role="main" class="container">
+    {% block content %}{% endblock %}
+</main>
+<footer>
+        <p>Совершая заказ, вы соглашаетесь с нашей политикой конфиденциалтьности относительно ваших контактов а также учетных записей и банковских данных.</p>
+        <p>Сайт не является пропагандистским, агитационным, не содержит материалов и создан сугубо в коммерческих целях.</p>
+        <p>Заказ отменить невозможно</p>
+        <p>На этой странице сайта голосовой модуль не работает</p>
+        <p>Телефон для контактов: +7 926 666 66 66</p>
+    </footer>
+</body>
+</html>

@@ -2,35 +2,39 @@ import json
 import os
 
 from flask import Flask, url_for, request, render_template, redirect
-from pickle import loads, dumps
 
 from data import db_session
 from data.users import User
 
 
 app = Flask(__name__)
+db_session.global_init("db/blogs.sqlite")
 
 
 @app.route('/')
 def index():
+    '''main page'''
     return render_template('main.html')
 
 
 @app.route('/instr')
 def instr():
+    '''instruction for using'''
     return render_template('Инструкция.html')
 
 
 @app.route('/table')
 def tab():
-    return render_template('ordertable.html', user='x')
+    '''page with a table of orders'''
+    return render_template('ordertable.html', user=js_info())
 
 
 @app.route('/ord', methods=['POST', 'GET'])
 def order():
+    '''function, which makes orders and creates json'''
     if request.method == 'POST':
-        n = {'name': request.form['name'],
-             'adress': request.form['adress'],
+        filejs = {'name': request.form['name'],
+             'address': request.form['address'],
              'telefon': request.form['telnum'],
              'email': request.form['email'],
              'amount': request.form['cooknumber'],
@@ -39,21 +43,15 @@ def order():
              'kindofcook': request.form['kindof'],
              'comment': request.form['comment'],
              'time': request.form['time']}
-        b = dumps(n)
-        print(n)
+        with open('info.json', 'w') as f:
+            f.write(json.dumps(filejs))
         return redirect(url_for('tab'))
     else:
         return render_template('makeorder.html')
 
 
-@app.route('/instruction')
-def instr():
-    return render_template('Инструкция.html')
-
-
-@app.route('/data')
 def js_info():
-    db_session.global_init("db/blogs.sqlite")
+    '''function, which creates database'''
     session = db_session.create_session()
     if os.access('info.json', os.R_OK):
         with open('info.json') as f:
@@ -73,7 +71,7 @@ def js_info():
             session.commit()
             os.remove('info.json')
     user = session.query(User)
-    return render_template('index.html', user=user)
+    return user
 
 
 if __name__ == '__main__':

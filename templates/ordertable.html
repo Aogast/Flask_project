@@ -1,11 +1,14 @@
 {% extends "baseshabl.html" %}
 {% block content %}
-<h1>{{user}}</h1>
-<footer>
-        <p>Совершая заказ, вы соглашаетесь с нашей политикой конфиденциалтьности относительно ваших контактов а также учетных записей и банковских данных.</p>
-        <p>Сайт не является пропагандистским, агитационным, не содержит материалов и создан сугубо в коммерческих целях.</p>
-        <p>Заказ отменить невозможно</p>
-        <p>На этой странице сайта голосовой модуль не работает</p>
-        <p>Телефон для контактов: +7 926 666 66 66</p>
-    </footer>
+<h2 class='table1'>Таблица заказов</h2>
+<hr>
+{% for item in user%}
+<div class="col-md6 border rounded">
+    <h5>{{item.id}}</h5>
+    <div>
+        {{item.name, item.address, item.email, item.kindofcook, item.amount, item.time, item.comment}}
+    </div>
+
+</div>
+{% endfor %}
 {% endblock %}
