@@ -17,7 +17,7 @@
     <h3>Наши самые популярные продукты</h3>
     </div>
     <img class='img' src="static/печенье 2.jpg" width="370" height="250" alt="здесь должна быть картинка, но ее почему-то нет"/>
-    <div class="tablex" id='товар'>
+    <div class="tablex" id='продукт'>
         <ul>
             <li>Овсяное печенье</li>
             <li>Ржаное печенье</li>
@@ -46,39 +46,38 @@
     </div>
 <img class='img' src="static/печенье4.jpeg" width="370" height="250" alt="здесь должна быть картинка, но ее почему-то нет"/>
   <script>
-  var recogn = new webkitSpeechRecognition();
+ var recogn = new webkitSpeechRecognition();
   var tsaurus0 = ['перемести', 'выдел', 'спусти']; // создаем первый тезаурус с командами
-  var tsaurus1 = ['поставщик', 'заказ', 'товар', 'контакт', 'описани', 'инструкци' ]; // создаем второй тезаурус с обрабатываемыми элементами
+  var tsaurus1 = ['поставщик', 'заказ', 'продукт', 'контакт', 'описани', 'инструкци', 'главна', 'таблиц',]; // создаем второй тезаурус с обрабатываемыми элементами
   var namin1 = '';
   var namin2 = '';
   recogn.lang = 'ru-Ru';
   recogn.interimResults = true; // инициализация
   recogn.onresult = function (event) {
     var result = event.results[event.resultIndex];
-    if (result.isFinal) {var tsaurus2 = result[0].transcript.split(' '); // Разбиение текста на части
+    if (result.isFinal) {var tsaurus2 = result[0].transcript.toLowerCase().split(' ');
+    alert(tsaurus2);
       for (let i = 0; i < tsaurus2.length; i++) {
           for (let j = 0; j < tsaurus1.length; j++) {
-              if (tsaurus1[j].indexOf(tsaurus1[i]) != -1){
-                  namin1 = tsaurus1[i];}}} // получение имени элемента}}}
-      for (let i = 0; i < tsaurus0.length; i++) {
-          for (let j = 0; j < tsaurus2.length; j++) {
-              if (tsaurus2[j].indexOf(tsaurus0[i]) != -1){
-                  namin2 = tsaurus0[i];}}} // получение названия команды}}}
-        if (namin1 == '' || namin2 == ''){
-            alert('произошла ошибка, попробуйте еще раз'); // обработка ошибок
-        } else if (namin2 == 'спустить'){
-                window.location.href = window.location.href + '#' + namin1; // переход по ссылке, здесь и нужно поменять первоначальный адрес, чтобы протестировать эту функцию
-            } else if (namin2 == 'выдели'){
-                var element = document.getElementById(namin1);
-                element.style.backgroundColor = 'red'; // изменение цвета
-            }  else if (namin2 == 'перейт'){
-                var elem = document.getElementById(namin1).href;
-                window.location.href = elem; // переход по ссылке}}
-        namin1 = ''
-        namin2 = ''
-      }} else {console.log('Промежуточный результат: ', result[0].transcript);}};
+              if (tsaurus2[i].indexOf(tsaurus1[j]) != -1){
+                  namin1 = tsaurus1[j];}}}
+      for (let i = 0; i < tsaurus2.length; i++) {
+          for (let j = 0; j < tsaurus0.length; j++) {
+              if (tsaurus2[i].indexOf(tsaurus0[j]) != -1){
+                  namin2 = tsaurus0[j];}}}
+        if (namin1 == ''|| namin2 == ''){
+            alert('По всем признакам, вы сделали что-то не так.Обратитесь к инструкции и повторите еще раз');}
+        else if(namin2 == 'спусти'){
+            window.location.href = window.location.href + '#' + namin1;}
+        else if(namin2 == 'перемести'){
+            var elem = document.getElementById(namin1).href;
+            window.location.href = document.getElementById(namin1).href;}
+        else if(namin2 == 'выдел'){
+            document.getElementById(namin1).style.display = "initial";}
+        namin1='';
+        namin2='';
+        } else {console.log('Промежуточный результат: ', result[0].transcript);}};
   function start () {recogn.start();}
-// команда остановки
   function stop () {synth.pause();}
   </script>
 {% endblock %}
